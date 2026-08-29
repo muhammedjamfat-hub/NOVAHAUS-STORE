@@ -1,0 +1,26 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap');
+
+body {
+  background-color: #F8F6F1;
+  color: #0A0A0A;
+}
+
+.btn-primary {
+  @apply bg-nova-black text-white px-6 py-3 rounded-sm font-medium tracking-wide hover:bg-nova-gold hover:text-nova-black transition-colors duration-300;
+}
+
+.btn-gold {
+  @apply bg-nova-gold text-nova-black px-6 py-3 rounded-sm font-medium tracking-wide hover:bg-nova-goldlight transition-colors duration-300;
+}
+
+.btn-whatsapp {
+  @apply bg-[#25D366] text-white px-6 py-3 rounded-sm font-medium tracking-wide hover:opacity-90 transition-opacity duration-300;
+}
+
+.container-nova {
+  @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+}
