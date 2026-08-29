@@ -1,10 +1,10 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { Suspense, useEffect, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import Link from "next/link";
 
-export default function PaymentCallbackPage() {
+function PaymentCallbackInner() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const [status, setStatus] = useState<"verifying" | "failed">("verifying");
@@ -45,5 +45,13 @@ export default function PaymentCallbackPage() {
         Try Again
       </Link>
     </div>
+  );
+}
+
+export default function PaymentCallbackPage() {
+  return (
+    <Suspense fallback={<div className="container-nova py-24 text-center text-black/60">Loading...</div>}>
+      <PaymentCallbackInner />
+    </Suspense>
   );
 }
