@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { useSearchParams, useParams } from "next/navigation";
 import { MessageCircle } from "lucide-react";
@@ -49,6 +49,15 @@ export default function OrderSuccessPage() {
         setLoading(false);
       });
   }, [orderNumber, oid]);
+
+  const purchaseTracked = useRef(false);
+
+  useEffect(() => {
+    if (order && !purchaseTracked.current && typeof window !== "undefined" && window.fbq) {
+      window.fbq("track", "Purchase", { value: Number(order.total), currency: "NGN" });
+      purchaseTracked.current = true;
+    }
+  }, [order]);
 
   async function handleReceiptUpload(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
